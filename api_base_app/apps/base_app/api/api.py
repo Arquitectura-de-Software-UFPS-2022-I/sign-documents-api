@@ -19,8 +19,9 @@ class FileViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         ext = self.request.data['file'].name.split(".")[-1]
-        self.request.data['file'].name = str(uuid.uuid4()) + '.' + ext
-        serializer.save()
+        uuid_image = str(uuid.uuid4())
+        self.request.data['file'].name = uuid_image + '.' + ext
+        serializer.save(uuid_image=uuid_image)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -85,17 +86,15 @@ class GetGenerateFileSignedFromRequestSignature(APIView):
             num_page = file_handle[signature_request_user.num_page-1]
             num_page.insert_image(image_rectangle, stream=signature)
 
-        file_handle.save(os.path.join(os.path.join(settings.MEDIA_ROOT, 'files'), 'doc_signed.pdf'))
+        path_pdf = os.path.join(os.path.join(settings.MEDIA_ROOT, 'files'), str(uuid.uuid4())+'.pdf')
+        file_handle.save(path_pdf)
         file_handle.close()
 
-        return Response({'message': 'ok'})
+        image_file = open(path_pdf, 'rb')
+        response = HttpResponse(FileWrapper(image_file), content_type='application/pdf')
 
-#class GetFileViewSet(APIView):
-#    def get(self, request, uuid_image):
-#        ext = uuid_image.split('.')[-1].lower()
-#        content_type = 'application/pdf' if ext == 'pdf' else ('image/png' if ext == 'png' else 'image/png')
-#        path_image = os.path.join(os.path.join(settings.MEDIA_ROOT, 'files'), uuid_image)
-#        image_file = open(path_image, 'rb')
-#        response = HttpResponse(FileWrapper(image_file), content_type=content_type)
-#        response['Content-Disposition'] = 'attachment; filename="%s"' % ('file.'+ext)
-#        return response
+        image_file.close()
+        os.remove(path_pdf)
+
+        response['Content-Disposition'] = 'attachment; filename="%s"' % (signature_request.document.name+'.pdf')
+        return response

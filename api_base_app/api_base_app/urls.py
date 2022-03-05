@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from .views import GetFileViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('apps.base_app.api.urls')),
+    path('media/files/<str:uuid_image>/', GetFileViewSet.as_view(), name="get file"),
 ]

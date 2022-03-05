@@ -5,6 +5,8 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = '__all__'
+        extra_kwargs = {'uuid_image': {'required': False}}
+        read_only_fields = ['uuid_image']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

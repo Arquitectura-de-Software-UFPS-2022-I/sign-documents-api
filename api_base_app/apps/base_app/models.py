@@ -4,12 +4,13 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class File(models.Model):
     name = models.CharField(max_length=50)
+    uuid_image = models.CharField(max_length=100, default='', editable=False)
     file = models.FileField(upload_to='files/')
     create_date = models.DateTimeField(auto_now_add=True)
 
 class User(AbstractUser):
     full_name = models.CharField(max_length=150)
-    signature = models.OneToOneField(File, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
+    signature = models.OneToOneField(File, on_delete=models.SET_DEFAULT, default=None, blank=True, null=True)
 
 class SignatureRequest(models.Model):
     subject = models.CharField(max_length=100)
