@@ -16,7 +16,7 @@ Descarga el [modelo](https://drive.google.com/file/d/1-2abDVQcrRF9CUYRqTMIVXn5f_
 ## Instalación
 Primero, clone el repositorio en su máquina local:
 ```bash
-git clone https://github.com/Arquitectura-de-Software-UFPS-2022-I/sign-documents-api.git
+git clone https://github.com/Sachica/validate_signature.git
 ```
 
 Después de clonar el repositorio, desea crear un entorno virtual, por lo que tiene una instalación de python limpia.
@@ -77,7 +77,7 @@ baseURL = http://52.240.59.172:8000
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
 | GET   | /api/v1/signature_requests/ | Signature request list | |
-| GET   | /api/v1/signature_requests/ | list of signature request made by user | |
+| GET   | /api/v1/signature_requests/ | List of signature request made by user | |
 | POST   | /api/v1/signature_requests/ | Create Signature Request | [JSON](#signature-request-create) |
 | PUT    | /api/v1/signature_requests/{id_signature_request} | Update signature request | [JSON](#signature-request-update) |
 | DELETE | /api/v1/signature_requests/{id_signature_request} | Delete signature request | |
@@ -87,10 +87,11 @@ baseURL = http://52.240.59.172:8000
 
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
-| GET   | /api/v1/users/ | List users | |
-| POST   | /api/v1/users/ | Create user | [JSON](#usercreate) |
-| PUT    | /api/users/{id_user} | Update user| [JSON](#userupdate) |
-| DELETE | /api/users/{id_user} | Delete user | |
+| GET   | /api/v1/signature_request_users_by_request/{id_signature_request}/ | List of users per request | |
+| GET   | /api/v1/signature_request_users_by_user/{id_signature_request}/ | List of requests received by user | |
+| POST   | /api/v1/signature_request_users/ | Create signature request by user | [JSON](#signature-request-user-create) |
+| PUT    | /api/v1/signature_request_users/{id_user_to_signed}/ | Update user| [JSON](#signature-request-user-update) |
+| DELETE | /api/v1/signature_request_users/{id_signature_request} | Delete Signature request | |
 
 ### Generate Signed File
 
@@ -120,4 +121,4 @@ baseURL = http://52.240.59.172:8000
 [Universidad Francisco de Paula Santander]: https://ww2.ufps.edu.co/
 
 ## Licencia
-El código fuente se publica bajo la [MIT License](https://github.com/sibtc/django-multiple-user-types-example/blob/master/LICENSE).
+El código fuente se publica bajo la [MIT License](https://github.com/Arquitectura-de-Software-UFPS-2022-I/sign-documents-api/blob/master/LICENSE).
