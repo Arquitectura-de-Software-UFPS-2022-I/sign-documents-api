@@ -14,7 +14,7 @@ class User(AbstractUser):
 
 class SignatureRequest(models.Model):
     subject = models.CharField(max_length=100)
-    document = models.ForeignKey(File, on_delete=models.CASCADE)
+    document = models.ForeignKey(File, on_delete=models.RESTRICT)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
 

@@ -23,3 +23,4 @@ class SignatureRequestUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = SignatureRequestUser
         fields = '__all__'
+        read_only_fields = ['signature_date']

@@ -1,4 +1,5 @@
-import os, uuid, fitz
+from datetime import datetime
+import os, uuid, fitz, smtplib
 
 from ..models import File, User, SignatureRequest, SignatureRequestUser
 from .serializers import FileSerializer, SignatureRequestSerializer, SignatureRequestUserSerializer, UserSerializer
@@ -7,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate
 from django.conf import settings
 from wsgiref.util import FileWrapper
 
@@ -47,6 +49,40 @@ class SignatureRequestUserViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = SignatureRequestUserSerializer
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        signature_request = instance.request
+        user_origin = signature_request.user
+        user_destination = instance.user
+
+        msg = "Se le notifica que el usuario {} ha solicitado su firma para el documento {}.".format(user_origin.full_name, signature_request.document.name)
+        subject = signature_request.subject
+
+        msg ='subject: {}\n\n{}'.format(subject, msg)
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login("softwarearchitecture9@gmail.com", "architecture$9")
+        server.sendmail("softwarearchitecture9@gmail.com", user_destination.email, msg)
+        server.quit()
+        
+    def perform_update(self, serializer):
+        signature_request_user = SignatureRequestUser.objects.filter(id=self.request.data['id']).first()
+        signature_date = signature_request_user.signature_date
+        if not signature_date and self.request.data['signed']:
+            signature_date = datetime.now()
+        serializer.save(signature_date=signature_date)
+
+class AuthenticationViewSet(APIView):
+    def post(self, request):
+        username = request.data['username']
+        password = request.data['password']
+        if username and password:
+            user = authenticate(request=request, username=username, password=password)
+            if user is not None:
+                user_serializer = UserSerializer(user)
+                return Response(user_serializer.data)
+        return Response(status=204)
 
 class ListSignatureRequestByUserViewSet(APIView):
     def get(self, request, user_id):
