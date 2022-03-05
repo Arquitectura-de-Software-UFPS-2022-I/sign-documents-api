@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'apps.base_app'
+    'apps.base_app',
+    'apps.validate_signature',
 ]
 
 AUTH_USER_MODEL = 'base_app.User'
