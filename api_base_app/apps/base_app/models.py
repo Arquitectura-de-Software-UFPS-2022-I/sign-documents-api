@@ -23,6 +23,6 @@ class SignatureRequestUser(models.Model):
     pos_x = models.IntegerField()
     pos_y = models.IntegerField()
     num_page = models.IntegerField()
-    signed = models.BooleanField()
+    signed = models.BooleanField(default=False)
     signature_date = models.DateTimeField(default=None, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
