@@ -50,7 +50,7 @@ baseURL = http://52.240.59.172:8000
 
 ### Files Services
 
-| Method | URL | Decription | Body | Response |  
+| Method | URL | Decription | Request Body | Response Body | 
 | ------ | --- | ---------- | --------------------------- | --------------------------- |
 | GET   | /api/v1/files/ | List files | | |
 | POST   | /api/v1/files/ | Upload file | [JSON](#upload-file) | [JSON](#upload-file-response) |
@@ -58,14 +58,14 @@ baseURL = http://52.240.59.172:8000
 
 ### Auth Services
 
-| Method | URL | Decription | Body | Response |
+| Method | URL | Decription | Request Body | Response Body |
 | ------ | --- | ---------- | --------------------------- | --------------------------- |
 | POST   | /api/v1/users/ | Sign up | [JSON](#sign-up) | [JSON](#sign-up-response) |
 | POST   | /api/v1/auth/user/ | Sign in | [JSON](#sign-in) | [JSON](#sign-in-response) |
 
 ### Users Services
 
-| Method | URL | Decription | Body | Response |
+| Method | URL | Decription | Request Body | Response Body |
 | ------ | --- | ---------- | --------------------------- | --------------------------- |
 | GET   | /api/v1/users/ | List users | | |
 | POST   | /api/v1/users/ | Create user | [JSON](#sign-up) | [JSON](#sign-up-response) |
@@ -74,7 +74,7 @@ baseURL = http://52.240.59.172:8000
 
 ### Signature Request Services
 
-| Method | URL | Decription | Body | Response |
+| Method | URL | Decription | Request Body | Response Body |
 | ------ | --- | ---------- | --------------------------- | --------------------------- |
 | GET   | /api/v1/signature_requests/ | Signature request list | | |
 | GET   | /api/v1/signature_requests_by_user/{id_user}/ | List of signature request made by user | | |
@@ -85,7 +85,7 @@ baseURL = http://52.240.59.172:8000
 
 ### Signature Request User Services
 
-| Method | URL | Decription | Body | Response |
+| Method | URL | Decription | Request Body | Response Body |
 | ------ | --- | ---------- | --------------------------- | --------------------------- |
 | GET   | /api/v1/signature_request_users_by_request/{id_signature_request}/ | List signature request users by signature request | | |
 | GET   | /api/v1/signature_request_users_by_user/{id_user}/ | List of requests received by user | | |
@@ -95,7 +95,7 @@ baseURL = http://52.240.59.172:8000
 
 ### Generate Signed File Services
 
-| Method | URL | Decription | Body | Response |
+| Method | URL | Decription | Request Body | Response Body |
 | ------ | --- | ---------- | --------------------------- | --------------------------- |
 | GET   | /api/v1/generate_pdf/{id_signature_request}/ | Generate signed file | | |
 
@@ -186,7 +186,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="sign-up">Sign Up -> /api/v1/users/</a>
+##### <a id="sign-up-response">Sign Up -> /api/v1/users/</a>
 ```json
 {
     "id": 2,
@@ -198,7 +198,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="sign-in">Sign In -> /api/v1/auth/user/</a>
+##### <a id="sign-in-response">Sign In -> /api/v1/auth/user/</a>
 ```json
 {
     "id": 2,
@@ -210,7 +210,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="user-update">Update User -> /api/v1/users/{id_user}/</a>
+##### <a id="user-update-response">Update User -> /api/v1/users/{id_user}/</a>
 ```json
 {
     "id": 2,
@@ -222,7 +222,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="signature-request-create">Create Signature Request -> /api/v1/signature_requests/</a>
+##### <a id="signature-request-create-response">Create Signature Request -> /api/v1/signature_requests/</a>
 ```json
 {
     "id": 5,
@@ -233,7 +233,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="signature-request-update">Update Signature Request -> /api/v1/signature_requests/{id_signature_request}/</a>
+##### <a id="signature-request-update-response">Update Signature Request -> /api/v1/signature_requests/{id_signature_request}/</a>
 ```json
 {
     "id": 5,
@@ -244,7 +244,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="signature-request-user-create">Create Signature Request by User -> /api/v1/signature_request_users/</a>
+##### <a id="signature-request-user-create-response">Create Signature Request by User -> /api/v1/signature_request_users/</a>
 ```json
 {
     "id": 7,
@@ -259,7 +259,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="signature-request-user-update">Update Signature Request by User -> /api/v1/signature_request_users/{id_signature_request}/</a>
+##### <a id="signature-request-user-update-response">Update Signature Request by User -> /api/v1/signature_request_users/{id_signature_request}/</a>
 ```json
 {
     "id": 7,
