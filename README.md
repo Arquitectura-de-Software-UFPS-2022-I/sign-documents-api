@@ -87,8 +87,8 @@ baseURL = http://52.240.59.172:8000
 
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
-| GET   | /api/v1/signature_request_users_by_request/{id_signature_request}/ | List of users per request | |
-| GET   | /api/v1/signature_request_users_by_user/{id_signature_request}/ | List of requests received by user | |
+| GET   | /api/v1/signature_request_users_by_request/{id_signature_request}/ | List signature request users by signature request | |
+| GET   | /api/v1/signature_request_users_by_user/{id_user}/ | List of requests received by user | |
 | POST   | /api/v1/signature_request_users/ | Create signature request by user | [JSON](#signature-request-user-create) |
 | PUT    | /api/v1/signature_request_users/{id_user_to_signed}/ | Update user| [JSON](#signature-request-user-update) |
 | DELETE | /api/v1/signature_request_users/{id_signature_request}/ | Delete Signature request | |
@@ -101,7 +101,7 @@ baseURL = http://52.240.59.172:8000
 
 ## JSON Request Bodys
 
-##### <a id="sign-up">Sign Up -> /api/auth/signup</a>
+##### <a id="sign-up">Sign Up -> /api/v1/users/</a>
 ```json
 {
     "full_name": "Test",
