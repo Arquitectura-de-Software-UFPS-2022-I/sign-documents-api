@@ -15,5 +15,5 @@ class GetFileViewSet(APIView):
         content_type = 'application/pdf' if ext == 'pdf' else ('image/png' if ext == 'png' else 'image/jpg')
         image_file = open(file.file.path, 'rb')
         response = HttpResponse(FileWrapper(image_file), content_type=content_type)
-        response['Content-Disposition'] = 'attachment; filename="%s"' % (file.name+ext)
+        response['Content-Disposition'] = 'attachment; filename="%s"' % (file.name + '.' + ext)
         return response
