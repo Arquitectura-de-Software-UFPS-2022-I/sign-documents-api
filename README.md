@@ -54,7 +54,7 @@ baseURL = http://52.240.59.172:8000
 | ------ | --- | ---------- | --------------------------- |
 | GET   | /api/v1/files/ | List files | |
 | POST   | /api/v1/files/ | Upload file | [JSON](#upload-file) |
-| DELETE   | /api/v1/files/{id_file} | List files | |
+| DELETE   | /api/v1/files/{id_file}/ | Delete files | |
 
 ### Auth Services
 
@@ -69,18 +69,18 @@ baseURL = http://52.240.59.172:8000
 | ------ | --- | ----------- | ------------------------- |
 | GET   | /api/v1/users/ | List users | |
 | POST   | /api/v1/users/ | Create user | [JSON](#user-create) |
-| PUT    | /api/users/{id_user} | Update user| [JSON](#user-update) |
-| DELETE | /api/users/{id_user} | Delete user | |
+| PUT    | /api/users/{id_user}/ | Update user| [JSON](#user-update) |
+| DELETE | /api/users/{id_user}/ | Delete user | |
 
 ### Signature Request Services
 
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
 | GET   | /api/v1/signature_requests/ | Signature request list | |
-| GET   | /api/v1/signature_requests/ | List of signature request made by user | |
+| GET   | /api/v1/signature_requests_by_user/{id_user}/ | List of signature request made by user | |
 | POST   | /api/v1/signature_requests/ | Create Signature Request | [JSON](#signature-request-create) |
-| PUT    | /api/v1/signature_requests/{id_signature_request} | Update signature request | [JSON](#signature-request-update) |
-| DELETE | /api/v1/signature_requests/{id_signature_request} | Delete signature request | |
+| PUT    | /api/v1/signature_requests/{id_signature_request}/ | Update signature request | [JSON](#signature-request-update) |
+| DELETE | /api/v1/signature_requests/{id_signature_request}/ | Delete signature request | |
 
 
 ### Signature Request User Services
@@ -91,13 +91,25 @@ baseURL = http://52.240.59.172:8000
 | GET   | /api/v1/signature_request_users_by_user/{id_signature_request}/ | List of requests received by user | |
 | POST   | /api/v1/signature_request_users/ | Create signature request by user | [JSON](#signature-request-user-create) |
 | PUT    | /api/v1/signature_request_users/{id_user_to_signed}/ | Update user| [JSON](#signature-request-user-update) |
-| DELETE | /api/v1/signature_request_users/{id_signature_request} | Delete Signature request | |
+| DELETE | /api/v1/signature_request_users/{id_signature_request}/ | Delete Signature request | |
 
-### Generate Signed File
+### Generate Signed File Services
 
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
 | GET   | /api/v1/generate_pdf/{id_signature_request}/ | List users | |
+
+## JSON Request Bodys
+
+##### <a id="sign-up">Sign Up -> /api/auth/signup</a>
+```json
+{
+    "full_name": "Test",
+    "username": "test",
+    "email": "test@ufps.edu.co",
+    "password": "test"
+}
+```
 
 ## Autor(es)
 
