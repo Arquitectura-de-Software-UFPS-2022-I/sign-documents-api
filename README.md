@@ -16,7 +16,7 @@ Descarga el [modelo](https://drive.google.com/file/d/1-2abDVQcrRF9CUYRqTMIVXn5f_
 ## Instalación
 Primero, clone el repositorio en su máquina local:
 ```bash
-git clone https://github.com/Sachica/validate_signature.git
+git clone https://github.com/Arquitectura-de-Software-UFPS-2022-I/sign-documents-api.git
 ```
 
 Después de clonar el repositorio, desea crear un entorno virtual, por lo que tiene una instalación de python limpia.
