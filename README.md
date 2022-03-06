@@ -90,7 +90,7 @@ baseURL = http://52.240.59.172:8000
 | GET   | /api/v1/signature_request_users_by_request/{id_signature_request}/ | List signature request users by signature request | |
 | GET   | /api/v1/signature_request_users_by_user/{id_user}/ | List of requests received by user | |
 | POST   | /api/v1/signature_request_users/ | Create signature request by user | [JSON](#signature-request-user-create) |
-| PUT    | /api/v1/signature_request_users/{id_user_to_signed}/ | Update user| [JSON](#signature-request-user-update) |
+| PUT    | /api/v1/signature_request_users/{id_user_to_signed}/ | Update signature request by user | [JSON](#signature-request-user-update) |
 | DELETE | /api/v1/signature_request_users/{id_signature_request}/ | Delete Signature request | |
 
 ### Generate Signed File Services
@@ -125,22 +125,53 @@ baseURL = http://52.240.59.172:8000
     "full_name": "Test",
     "username": "test",
     "password": "encrypted_password",
-    "signature": "id_file_signature"
+    "signature": "id_file_image"
 }
 ```
 
 ##### <a id="signature-request-create">Create Signature Request -> /api/v1/signature_requests/</a>
 ```json
 {
-    "full_name": "Test",
-    "username": "test",
-    "password": "encrypted_password",
-    "signature": "id_file_signature"
+    "subject": "subject",
+    "document": "id_file_pdf",
+    "user": "id_owner"
 }
 ```
 
+##### <a id="signature-request-update">Update Signature Request -> /api/v1/signature_requests/{id_signature_request}/</a>
+```json
+{
+    "subject": "subject",
+    "document": "id_file_pdf",
+    "user": "id_owner"
+}
+```
 
+##### <a id="signature-request-user-create">Create signature request by user -> /api/v1/signature_request_users/</a>
+```json
+{
+    "pos_x": 200,
+    "pos_y": 200,
+    "num_page": 1,
+    "request": "id_signature_request",
+    "user": "id_user_to_signed"
+}
+```
 
+##### <a id="signature-request-user-update">Update signature request by user -> /api/v1/signature_request_users/{id_user_to_signed}/</a>
+```json
+{
+    "id": 7,
+    "pos_x": 200,
+    "pos_y": 200,
+    "num_page": 1,
+    "signed": true,
+    "signature_date": null,
+    "created_date": "2022-03-05T21:07:22.009463Z",
+    "request": 5,
+    "user": 9
+}
+```
 
 ## Autor(es)
 
