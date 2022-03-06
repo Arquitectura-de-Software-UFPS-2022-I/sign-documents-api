@@ -78,7 +78,7 @@ baseURL = http://52.240.59.172:8000
 | ------ | --- | ----------- | ------------------------- |
 | GET   | /api/v1/signature_requests/ | Signature request list | |
 | GET   | /api/v1/signature_requests_by_user/{id_user}/ | List of signature request made by user | |
-| POST   | /api/v1/signature_requests/ | Create Signature Request | [JSON](#signature-request-create) |
+| POST   | /api/v1/signature_requests/ | Create signature request | [JSON](#signature-request-create) |
 | PUT    | /api/v1/signature_requests/{id_signature_request}/ | Update signature request | [JSON](#signature-request-update) |
 | DELETE | /api/v1/signature_requests/{id_signature_request}/ | Delete signature request | |
 
@@ -97,7 +97,7 @@ baseURL = http://52.240.59.172:8000
 
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
-| GET   | /api/v1/generate_pdf/{id_signature_request}/ | List users | |
+| GET   | /api/v1/generate_pdf/{id_signature_request}/ | Generate signed file | |
 
 ## JSON Request Bodys
 
@@ -147,7 +147,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="signature-request-user-create">Create signature request by user -> /api/v1/signature_request_users/</a>
+##### <a id="signature-request-user-create">Create Signature Request by User -> /api/v1/signature_request_users/</a>
 ```json
 {
     "pos_x": 200,
@@ -158,7 +158,7 @@ baseURL = http://52.240.59.172:8000
 }
 ```
 
-##### <a id="signature-request-user-update">Update signature request by user -> /api/v1/signature_request_users/{id_user_to_signed}/</a>
+##### <a id="signature-request-user-update">Update Signature Request by User -> /api/v1/signature_request_users/{id_user_to_signed}/</a>
 ```json
 {
     "id": 7,
