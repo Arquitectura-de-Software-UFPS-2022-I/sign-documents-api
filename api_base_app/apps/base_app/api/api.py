@@ -19,6 +19,10 @@ class FileViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = FileSerializer
 
+    def perform_destroy(self, serializer):
+        os.remove(serializer.file.path)
+        serializer.delete()
+
     def perform_create(self, serializer):
         ext = self.request.data['file'].name.split(".")[-1]
         uuid_image = str(uuid.uuid4())
@@ -32,6 +36,22 @@ class UserViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = UserSerializer
 
+    def perform_destroy(self, serializer):
+        if serializer.signature:
+            os.remove(serializer.signature.file.path)
+            serializer.signature.delete()
+        serializer.delete()
+
+    def update(self, request, *args, **kwargs):
+        if self.get_object().signature and request.data['signature'] and self.get_object().signature.id != request.data['signature']:
+            signature = File.objects.filter(id=self.get_object().signature.id).first()
+            os.remove(signature.file.path)
+            signature.delete()
+
+        if self.get_object().password != request.data['password']:
+            request.data['password'] = make_password(request.data['password'])
+        return super(UserViewSet, self).update(request, *args, **kwargs)
+
     def perform_create(self, serializer):
         password = make_password(self.request.data['password'])
         serializer.save(password=password)
@@ -42,6 +62,11 @@ class SignatureRequestViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = SignatureRequestSerializer
+
+    def perform_destroy(self, serializer):
+        os.remove(serializer.document.file.path)
+        serializer.document.delete()
+        serializer.delete()
 
 class SignatureRequestUserViewSet(viewsets.ModelViewSet):
     queryset = SignatureRequestUser.objects.all()
