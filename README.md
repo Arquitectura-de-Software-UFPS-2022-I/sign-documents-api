@@ -68,9 +68,9 @@ baseURL = http://52.240.59.172:8000
 | Method | URL | Description | Body |
 | ------ | --- | ----------- | ------------------------- |
 | GET   | /api/v1/users/ | List users | |
-| POST   | /api/v1/users/ | Create user | [JSON](#user-create) |
-| PUT    | /api/users/{id_user}/ | Update user| [JSON](#user-update) |
-| DELETE | /api/users/{id_user}/ | Delete user | |
+| POST   | /api/v1/users/ | Create user | [JSON](#sign-up) |
+| PUT    | /api/v1/users/{id_user}/ | Update user| [JSON](#user-update) |
+| DELETE | /api/v1/users/{id_user}/ | Delete user | |
 
 ### Signature Request Services
 
@@ -110,6 +110,37 @@ baseURL = http://52.240.59.172:8000
     "password": "test"
 }
 ```
+
+##### <a id="sign-in">Sign In/Create User -> /api/v1/auth/user/</a>
+```json
+{
+    "username": "test",
+    "password": "test"
+}
+```
+
+##### <a id="user-update">Update User -> /api/v1/users/{id_user}/</a>
+```json
+{
+    "full_name": "Test",
+    "username": "test",
+    "password": "encrypted_password",
+    "signature": "id_file_signature"
+}
+```
+
+##### <a id="signature-request-create">Create Signature Request -> /api/v1/signature_requests/</a>
+```json
+{
+    "full_name": "Test",
+    "username": "test",
+    "password": "encrypted_password",
+    "signature": "id_file_signature"
+}
+```
+
+
+
 
 ## Autor(es)
 
